@@ -4,9 +4,9 @@ Dashboard ini dibangun untuk memprediksi kemungkinan keterlambatan penerbangan d
 
 ## Daftar Isi
 
-1. [Pendahuluan](#1.-pendahuluan)
-2. [Struktur Proyek](#2.-struktur-proyek)
-3. [Instalasi](#3.-instalasi)
+1. [Pendahuluan](#1. pendahuluan)
+2. [Struktur Proyek](#struktur-proyek)
+3. [Instalasi](#instalasi)
 4. [Cara Menjalankan Aplikasi](#4.-cara-menjalankan-aplikasi)
 5. [Model dan Hasil](#5.-model-dan-hasil)
    * [Klasifikasi Keterlambatan](#klasifikasi-keterlambatan)
