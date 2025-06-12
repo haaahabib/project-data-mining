@@ -3,15 +3,15 @@
 Dashboard ini dibangun untuk memprediksi kemungkinan keterlambatan penerbangan dan estimasi durasi keterlambatan menggunakan model Machine Learning. Proyek ini meliputi tahap analisis data (EDA), rekayasa fitur (feature engineering), pelatihan model klasifikasi dan regresi, serta pembangunan aplikasi web interaktif menggunakan Streamlit.
 
 ## Daftar Isi
-s
-1. [Pendahuluan](#pendahuluan)
-2. [Struktur Proyek](#struktur-proyek)
-3. [Instalasi](#instalasi)
-4. [Cara Menjalankan Aplikasi](#cara-menjalankan-aplikasi)
-5. [Model dan Hasil](#model-dan-hasil)
-   * [Klasifikasi Keterlambatan](#klasifikasi-keterlambatan)
-   * [Regresi Durasi Keterlambatan](#regresi-durasi-keterlambatan)
-6. [Fitur-Fitur Dashboard](#fitur-fitur-dashboard)
+
+1.  [Pendahuluan](#1-pendahuluan)
+2.  [Struktur Proyek](#2-struktur-proyek)
+3.  [Instalasi](#3-instalasi)
+4.  [Cara Menjalankan Aplikasi](#4-cara-menjalankan-aplikasi)
+5.  [Model dan Hasil](#5-model-dan-hasil)
+    * [Klasifikasi Keterlambatan](#klasifikasi-keterlambatan)
+    * [Regresi Durasi Keterlambatan](#regresi-durasi-keterlambatan)
+6.  [Fitur-Fitur Dashboard](#6-fitur-fitur-dashboard)
 
 ## 1. Pendahuluan
 
