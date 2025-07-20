@@ -1,6 +1,8 @@
 # Prediksi Keterlambatan Penerbangan
 
-Dashboard ini dibangun untuk memprediksi kemungkinan keterlambatan penerbangan dan estimasi durasi keterlambatan menggunakan model Machine Learning. Proyek ini meliputi tahap analisis data (EDA), rekayasa fitur (feature engineering), pelatihan model klasifikasi dan regresi, serta pembangunan aplikasi web interaktif menggunakan Streamlit.
+Dashboard interaktif ini dibangun untuk memprediksi kemungkinan keterlambatan penerbangan serta memberikan estimasi durasi keterlambatan menggunakan model *Machine Learning*. Proyek ini mencakup analisis data eksplorasi (EDA), rekayasa fitur, pelatihan model, hingga implementasi dalam aplikasi web menggunakan Streamlit.
+
+---
 
 ## Daftar Isi
 
@@ -13,88 +15,91 @@ Dashboard ini dibangun untuk memprediksi kemungkinan keterlambatan penerbangan d
     * [Regresi Durasi Keterlambatan](#regresi-durasi-keterlambatan)
 6.  [Fitur-Fitur Dashboard](#6-fitur-fitur-dashboard)
 
+---
+
 ## 1. Pendahuluan
 
-Proyek ini bertujuan untuk membantu memprediksi apakah suatu penerbangan akan mengalami keterlambatan atau tidak, serta berapa lama durasi keterlambatan yang mungkin terjadi. Prediksi ini didasarkan pada berbagai fitur penerbangan seperti maskapai, asal, tujuan, nomor penerbangan, jarak, dan waktu keberangkatan yang dijadwalkan.
+Proyek ini dirancang untuk menjawab dua pertanyaan kunci dalam operasional penerbangan: **apakah sebuah penerbangan akan terlambat?** dan **jika ya, berapa lama estimasi keterlambatannya?** Dengan memanfaatkan data historis seperti maskapai, rute, dan waktu keberangkatan, model ini bertujuan untuk memberikan prediksi yang dapat membantu pengambilan keputusan.
+
+---
 
 ## 2. Struktur Proyek
 
 Berikut adalah struktur utama file dan folder dalam proyek ini:
 
-- `app.py`: Aplikasi Streamlit untuk dashboard.
-- `requirements.txt`: Daftar semua pustaka/library Python yang diperlukan untuk menjalankan proyek.
-- `flight_delays.csv`: Dataset yang digunakan untuk pelatihan model dan visualisasi di dashboard.
-- `model_xgb.zip`: Berkas zip yang berisi model Machine Learning yang telah dilatih. Setelah diekstrak, akan terdapat:
-  - `xgb_flight_model.pkl`: Model XGBoost Classifier untuk prediksi klasifikasi keterlambatan.
-  - `xgb_delay_regressor.pkl`: Model XGBoost Regressor untuk prediksi durasi keterlambatan.
-- Folder `notebook/`: Berisi skrip dan notebook terkait pengembangan model.
-  - `project_flight_delay.ipynb`: Notebook Jupyter yang berisi langkah-langkah EDA, pra-pemrosesan data, pelatihan model klasifikasi dan regresi, serta evaluasi model.
-  - `project_flight_delay.py`: Skrip Python yang berisi fungsi-fungsi pembantu atau fungsi prediksi yang digunakan oleh `app.py`.
+| Nama File/Folder              | Deskripsi                                                                 |
+| :---------------------------- | :------------------------------------------------------------------------ |
+| **`app.py`** | Skrip utama aplikasi dashboard Streamlit.                                 |
+| **`requirements.txt`** | Daftar semua *library* Python yang dibutuhkan proyek.                     |
+| **`flight_delays.csv`** | Dataset yang digunakan untuk pelatihan dan analisis.                      |
+| **`model_xgb.zip`** | Berkas terkompresi berisi model yang telah dilatih.                       |
+| ↳ `xgb_flight_model.pkl`      | Model **XGBoost Classifier** untuk prediksi status keterlambatan.         |
+| ↳ `xgb_delay_regressor.pkl`   | Model **XGBoost Regressor** untuk prediksi durasi keterlambatan.          |
+| **`notebook/`** | Folder berisi *notebook* untuk pengembangan model.                        |
+| ↳ `project_flight_delay.ipynb`| Notebook Jupyter berisi EDA, pra-pemrosesan, dan pelatihan model.         |
+| ↳ `project_flight_delay.py`   | Skrip Python berisi fungsi pembantu untuk aplikasi.                       |
 
-**Catatan**: Sebelum menjalankan aplikasi, pastikan Anda telah mengekstrak isi dari `model_xgb.zip` (yaitu `xgb_flight_model.pkl` dan `xgb_delay_regressor.pkl`) ke direktori yang dapat diakses oleh `app.py`. Biasanya, ini berarti menempatkannya di direktori yang sama dengan `app.py`.
+**Catatan Penting**: Sebelum menjalankan aplikasi, pastikan Anda telah mengekstrak `model_xgb.zip` sehingga file `.pkl` berada di direktori yang sama dengan `app.py`.
+
+---
 
 ## 3. Instalasi
 
-Untuk menjalankan proyek ini, Anda perlu menginstal semua dependensi Python yang terdaftar dalam `requirements.txt`. Pastikan Anda memiliki Python 3.11.0 terinstal di sistem Anda.
+Untuk menyiapkan lingkungan proyek, pastikan Anda memiliki **Python 3.11.0**.
 
-1.  Buka terminal atau command prompt.
-2.  Navigasi ke direktori akar proyek ini.
-3.  Jalankan perintah berikut untuk menginstal dependensi:
-
+1.  Buka terminal dan navigasi ke direktori utama proyek.
+2.  Jalankan perintah berikut untuk menginstal semua *library* yang diperlukan:
     ```bash
     pip install -r requirements.txt
     ```
 
+---
+
 ## 4. Cara Menjalankan Aplikasi
 
-Setelah semua dependensi terinstal dan model `.pkl` telah diekstrak dari `model_xgb.zip` ke lokasi yang benar, Anda dapat menjalankan aplikasi dashboard Streamlit:
+Setelah instalasi selesai dan file model `.pkl` sudah diekstrak, jalankan aplikasi dengan langkah berikut:
 
-1.  Buka terminal atau command prompt.
-2.  Navigasi ke direktori `app.py` berada.
-3.  Jalankan perintah berikut:
-
+1.  Pastikan Anda berada di direktori yang berisi `app.py`.
+2.  Jalankan perintah di terminal:
     ```bash
-    python -m streamlit run app.py
+    streamlit run app.py
     ```
+    Aplikasi akan otomatis terbuka di *browser* Anda.
 
-Setelah perintah dijalankan, aplikasi akan secara otomatis terbuka di browser web default Anda pada alamat lokal.
+---
 
 ## 5. Model dan Hasil
 
-Proyek ini menggunakan dua model Machine Learning utama untuk prediksi keterlambatan penerbangan:
+Proyek ini menggunakan dua model dari *library* **XGBoost**:
 
-* **XGBoost Classifier**: Digunakan untuk mengklasifikasikan apakah suatu penerbangan akan mengalami keterlambatan (`DELAYED`) atau tidak (`ON-TIME`).
-* **XGBoost Regressor**: Digunakan untuk memprediksi durasi keterlambatan dalam satuan menit, khusus untuk penerbangan yang diprediksi akan terlambat.
+* **XGBoost Classifier**: Mengklasifikasikan penerbangan menjadi `DELAYED` atau `ON-TIME`.
+* **XGBoost Regressor**: Memprediksi durasi keterlambatan dalam menit.
 
-Detail pelatihan, evaluasi, dan metrik kinerja untuk kedua model ini didokumentasikan sepenuhnya dalam `notebook/project_flight_delay.ipynb`.
+Detail lengkap mengenai pelatihan, evaluasi, dan metrik performa kedua model tersedia di `notebook/project_flight_delay.ipynb`.
 
 ### Klasifikasi Keterlambatan
 
-Model klasifikasi (XGBoost Classifier) dilatih untuk memprediksi probabilitas dan status akhir (DELAYED/ON-TIME) suatu penerbangan.
-
-**Metrik Evaluasi Utama:**
-
-* **Precision, Recall, F1-Score**: Metrik ini sangat penting untuk menilai kinerja model, terutama pada kelas minoritas ('DELAYED'), menunjukkan kemampuan model untuk mengidentifikasi keterlambatan secara akurat dan meminimalkan kesalahan identifikasi.
-* **ROC AUC Score**: Mengukur kemampuan diskriminasi model dalam membedakan antara penerbangan on-time dan terlambat.
-* **Confusion Matrix**: Memberikan gambaran rinci tentang True Positives, True Negatives, False Positives, dan False Negatives dari prediksi model.
+Model ini dilatih untuk memprediksi status akhir penerbangan. Metrik evaluasi yang digunakan antara lain:
+* **Precision, Recall, F1-Score**: Untuk menilai kemampuan model mengidentifikasi keterlambatan secara akurat.
+* **ROC AUC Score**: Mengukur seberapa baik model membedakan antara kelas `ON-TIME` dan `DELAYED`.
+* **Confusion Matrix**: Memberikan rincian visual performa prediksi.
 
 ### Regresi Durasi Keterlambatan
 
-Model regresi (XGBoost Regressor) bertujuan untuk memperkirakan berapa lama keterlambatan yang akan terjadi jika penerbangan diprediksi terlambat.
+Model ini bertujuan mengestimasi durasi keterlambatan jika sebuah penerbangan diprediksi `DELAYED`. Metrik evaluasi yang digunakan antara lain:
+* **Mean Absolute Error (MAE)**: Rata-rata selisih absolut antara prediksi dan nilai aktual.
+* **Root Mean Squared Error (RMSE)**: Ukuran rata-rata kesalahan prediksi yang lebih sensitif terhadap *outlier*.
+* **R-squared ($R^2$)**: Proporsi varians pada durasi keterlambatan yang dapat dijelaskan oleh model.
 
-**Metrik Evaluasi Utama:**
-
-* **Mean Absolute Error (MAE)**: Menunjukkan rata-rata dari selisih absolut antara nilai durasi keterlambatan yang diprediksi dan nilai sebenarnya. Semakin rendah MAE, semakin akurat prediksi model.
-* **Root Mean Squared Error (RMSE)**: Mengukur ukuran rata-rata kesalahan prediksi model. RMSE lebih sensitif terhadap outlier dibandingkan MAE.
-* **R-squared (R2 Score)**: Menunjukkan proporsi varians dalam variabel target (durasi keterlambatan) yang dapat dijelaskan oleh model. Nilai R2 yang lebih tinggi menunjukkan kecocokan model yang lebih baik.
+---
 
 ## 6. Fitur-Fitur Dashboard
 
-Dashboard Streamlit (`app.py`) menyediakan antarmuka yang intuitif bagi pengguna untuk berinteraksi dengan model prediksi:
+Dashboard interaktif (`app.py`) menyediakan fitur-fitur berikut:
 
-* **Input Data Penerbangan**: Pengguna dapat dengan mudah memasukkan berbagai parameter penerbangan seperti maskapai, bandara asal dan tujuan, alasan potensial keterlambatan (misalnya, Cuaca, Perawatan), nomor penerbangan, jarak penerbangan, dan waktu keberangkatan yang dijadwalkan.
-* **Prediksi Instan**: Setelah data input diserahkan, dashboard akan secara instan menampilkan hasil prediksi. Ini termasuk:
-    * **Status Penerbangan**: Menunjukkan apakah penerbangan diprediksi `ON-TIME` atau `DELAYED`.
-    * **Probabilitas Keterlambatan**: Menampilkan probabilitas numerik (dalam persentase) bahwa penerbangan akan terlambat.
-    * **Estimasi Waktu Keterlambatan**: Jika penerbangan diprediksi terlambat, estimasi durasi keterlambatan dalam menit akan ditampilkan.
-* **Fleksibilitas Waktu**: Opsi untuk menggunakan waktu saat ini (WIB) sebagai waktu keberangkatan yang dijadwalkan, atau memilih waktu keberangkatan secara manual.
+* **Input Data Penerbangan**: Pengguna dapat memasukkan parameter penerbangan seperti maskapai, asal, tujuan, jarak, dan waktu keberangkatan.
+* **Prediksi Instan**: Setelah data di-submit, dashboard akan menampilkan:
+    * **Status Penerbangan**: `ON-TIME` atau `DELAYED`.
+    * **Probabilitas Keterlambatan**: Peluang keterlambatan dalam bentuk persentase.
+    * **Estimasi Waktu Keterlambatan**: Estimasi durasi dalam menit jika penerbangan diprediksi terlambat.
+* **Fleksibilitas Waktu**: Pengguna dapat memilih waktu keberangkatan manual atau menggunakan waktu saat ini (WIB) secara otomatis.
