@@ -70,26 +70,34 @@ Setelah instalasi selesai dan file model `.pkl` sudah diekstrak, jalankan aplika
 
 ## 5. Model dan Hasil
 
-Proyek ini menggunakan dua model dari *library* **XGBoost**:
-
-* **XGBoost Classifier**: Mengklasifikasikan penerbangan menjadi `DELAYED` atau `ON-TIME`.
-* **XGBoost Regressor**: Memprediksi durasi keterlambatan dalam menit.
-
-Detail lengkap mengenai pelatihan, evaluasi, dan metrik performa kedua model tersedia di `notebook/project_flight_delay.ipynb`.
+Proyek ini menggunakan dua model dari *library* **XGBoost** yang dievaluasi pada data uji. Detail lengkap tersedia di `notebook/project_flight_delay.ipynb`.
 
 ### Klasifikasi Keterlambatan
 
-Model ini dilatih untuk memprediksi status akhir penerbangan. Metrik evaluasi yang digunakan antara lain:
-* **Precision, Recall, F1-Score**: Untuk menilai kemampuan model mengidentifikasi keterlambatan secara akurat.
-* **ROC AUC Score**: Mengukur seberapa baik model membedakan antara kelas `ON-TIME` dan `DELAYED`.
-* **Confusion Matrix**: Memberikan rincian visual performa prediksi.
+Model **XGBoost Classifier** digunakan untuk memprediksi status penerbangan. Model ini menunjukkan performa yang kuat dengan akurasi keseluruhan **88%**.
+
+**Hasil Evaluasi Klasifikasi:**
+
+| Kelas | Precision | Recall | F1-Score |
+| :--- | :---: | :---: | :---: |
+| **On-Time** | 1.00 | 0.69 | 0.82 |
+| **Delayed** | 0.83 | 1.00 | 0.91 |
+
+* **ROC-AUC Score**: **0.8447**, menunjukkan kemampuan diskriminasi model yang baik.
 
 ### Regresi Durasi Keterlambatan
 
-Model ini bertujuan mengestimasi durasi keterlambatan jika sebuah penerbangan diprediksi `DELAYED`. Metrik evaluasi yang digunakan antara lain:
-* **Mean Absolute Error (MAE)**: Rata-rata selisih absolut antara prediksi dan nilai aktual.
-* **Root Mean Squared Error (RMSE)**: Ukuran rata-rata kesalahan prediksi yang lebih sensitif terhadap *outlier*.
-* **R-squared ($R^2$)**: Proporsi varians pada durasi keterlambatan yang dapat dijelaskan oleh model.
+Model **XGBoost Regressor** digunakan untuk mengestimasi durasi keterlambatan dalam menit. Model ini mampu menjelaskan sekitar **59%** variasi data.
+
+**Hasil Evaluasi Regresi:**
+
+| Metrik | Nilai |
+| :--- | :---: |
+| **Mean Absolute Error (MAE)** | 6.22 menit |
+| **Root Mean Squared Error (RMSE)**| 7.59 menit |
+| **R-squared ($R^2$)** | 0.5891 |
+
+Analisis lebih lanjut menunjukkan bahwa error prediksi tertinggi terjadi pada keterlambatan yang disebabkan oleh `Air Traffic Control` dan `Maintenance`.
 
 ---
 
@@ -103,3 +111,4 @@ Dashboard interaktif (`app.py`) menyediakan fitur-fitur berikut:
     * **Probabilitas Keterlambatan**: Peluang keterlambatan dalam bentuk persentase.
     * **Estimasi Waktu Keterlambatan**: Estimasi durasi dalam menit jika penerbangan diprediksi terlambat.
 * **Fleksibilitas Waktu**: Pengguna dapat memilih waktu keberangkatan manual atau menggunakan waktu saat ini (WIB) secara otomatis.
+  
